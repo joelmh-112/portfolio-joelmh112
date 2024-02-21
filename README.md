@@ -33,11 +33,11 @@ Este proyecto es mi portfolio personal, donde muestro algunos de los proyectos e
    ```
 4. **Haz cambios**: Realiza los cambios que desees en tu rama local.
 5. **Haz un commit**: Haz un commit de tus cambios con un mensaje descriptivo.
-  ```bash
-  git commit -m "Añade nueva función genial"
-  ```
+   ```bash
+   git commit -m "Añade nueva función genial"
+   ```
 6. **Envía tus cambios**: Envía tus cambios a tu repositorio fork.
-  ```bash
-  git push origin mi_contribucion
-  ```
+   ```bash
+   git push origin mi_contribucion
+   ```
 7. Crea un Pull Request: Abre un Pull Request desde tu rama fork a la rama principal de este repositorio.
