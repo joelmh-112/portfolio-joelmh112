@@ -1,0 +1,98 @@
+---
+import Card from "@/components/Card.astro";
+
+interface Experience {
+  title: string;
+  description: string;
+  incio: Date;
+  fin: Date;
+  tag?: "Profesional" | "Académica";
+}
+
+const dateFormat = new Intl.DateTimeFormat("es-ES", {
+  month: "short",
+  year: "numeric",
+});
+
+const experiences: Experience[] = [
+  {
+    title: "Desarrollador Full-Stack en Menorca Online SL",
+    description:
+      "Finalizadas las prácticas, me ofrecieron trabajar en la empresa, mi trabajo actual. Me he ido encargando de varios proyectos. He aprendido a utilizar nuevas tecnologías como Typescript, ReactJS y Next.js.",
+    incio: new Date(2021, 5, 18),
+    fin: new Date(),
+    tag: "Profesional",
+  },
+  {
+    title: "Prácticas FPGS en Menorca Online SL",
+    description:
+      "Una vez finalicé el grado superior, realicé prácticas en Menorca Online SL, donde se me asignaron varios proyectos donde aprendí a usar nuevas tecnologías para mí como Laravel, Vue.js, etc.",
+    incio: new Date(2021, 2, 25),
+    fin: new Date(2021, 5, 18),
+    tag: "Profesional",
+  },
+  {
+    title: "FP Grado Superior Desarrollo Aplicaciones Web",
+    description:
+      "A la vez que trabajaba cursé el grado en el IES Joan Ramis i Ramis. Aprendí a programar en Java y SQL; más adelante utilicé otros lenguajes como JavaScript y PHP. También aprendí a utilizar frameworks como Spring y a desarrollar aplicaciones móviles con Android Studio (Java).",
+    incio: new Date(2019, 8, 25),
+    fin: new Date(2021, 5, 18),
+    tag: "Académica",
+  },
+  {
+    title: "Empleado en Clínica Juaneda Menorca",
+    description:
+      "Después de realizar las prácticas en la clínica, me ofrecieron trabajar en el departamento para cubrir una baja de paternidad. En ese tiempo me seguí encargando de las mismas tareas que cuando estuve de prácticas (gestión de equipos, red, etc.).",
+    incio: new Date(2019, 9, 1),
+    fin: new Date(2019, 11, 30),
+    tag: "Profesional",
+  },
+  {
+    title: "Prácticas FPGM en Clínica Juaneda Menorca",
+    description:
+      "Con el grado medio de Sistemas Microinformáticos y Redes, realicé prácticas en la clínica Juaneda Menorca, donde me encargué de la gestión de los equipos informáticos, la red de la clínica, etc.",
+    incio: new Date(2019, 0, 1),
+    fin: new Date(2019, 2, 1),
+    tag: "Profesional",
+  },
+  {
+    title: "FP Grado Medio Sistemas Microinformáticos y Redes",
+    description: "Estudios de Formación Profesional en el IES Biel Martí de Ferreries, Menorca. Aprendí a gestionar equipos informáticos, redes, sistemas operativos, suite ofimática, editor de imágenes, audio y vídeo, etc.",
+    incio: new Date(2017, 8, 25),
+    fin: new Date(2019, 5, 20),
+    tag: "Académica",
+  },
+];
+---
+
+<section id="experience">
+  <div class="content flex flex-col gap-10">
+    <h1 class="font-oswald text-4xl">Experiencia</h1>
+
+    <div class="lg:grid lg:grid-cols-[repeat(auto-fill,minmax(25rem,1fr))] lg:gap-10 flex flex-col gap-6">
+      {
+        experiences.map((experience) => (
+          <Card className={`flex flex-col gap-6 justify-between`}>
+            <div class="flex flex-col gap-6">
+              <h2 class="font-raleway font-semibold text-2xl">{experience.title}</h2>
+              {experience.tag && (
+                <span class="bg-gray-primary bg-primary bg-opacity-20 p-2 rounded-md font-semibold text-primary w-fit">{experience.tag}</span>
+              )}
+              <p class="text-gray-300 opacity-95">{experience.description}</p>
+            </div>
+            <footer class="flex gap-4 justify-between">
+              <span class="text-primary font-semibold">
+                {experience.incio.getFullYear() === experience.fin.getFullYear()
+                  ? experience.fin.getMonth() - experience.incio.getMonth() + " meses"
+                  : experience.fin.getFullYear() - experience.incio.getFullYear() + " años"}
+              </span>
+              <span class="capitalize text-primary opacity-70 font-semibold">
+                {dateFormat.format(experience.incio)} - {dateFormat.format(experience.fin)}
+              </span>
+            </footer>
+          </Card>
+        ))
+      }
+    </div>
+  </div>
+</section>

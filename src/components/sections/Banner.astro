@@ -1,0 +1,28 @@
+---
+import Button from "@/components/Button.astro";
+import SocialButtons from "@/components/SocialButtons.astro";
+
+interface Props {
+  className?: string;
+}
+
+const { className } = Astro.props;
+---
+
+<section id="banner" class={`${className}`}>
+  <div class="content flex flex-col gap-16 lg:grid lg:grid-cols-3 lg:min-h-[65dvh]">
+    <div class="flex flex-col gap-6 order-3 lg:order-1 lg:justify-center">
+      <div class="flex flex-col gap-2">
+        <h1 class="text-white text-5xl font-oswald">JoelMH112</h1><h2 class="text-gray-300 text-3xl font-oswald">Joel Martínez Hernández</h2>
+      </div>
+      <h3 class="font-semibold text-gray-400">Desarrollador Full-stack | Técnico superior en DAW</h3>
+      <a href="mailto:joel.mh112@gmail.com"><Button>Contáctame</Button></a>
+    </div>
+    <div class="order-2 w-full items-center justify-center flex">
+      <div class="relative h-80 w-80 bg-primary bg-opacity-50 rounded-full overflow-hidden lg:h-[25rem] lg:w-[25rem]">
+        <img class="w-full h-full object-cover z-10 rounded-full backdrop:blur-lg absolute -bottom-2" src="/images/joel_transparent.webp" />
+      </div>
+    </div>
+    <SocialButtons className="text-white order-1 lg:order-3 flex gap-4 items-center w-full justify-center lg:justify-end" />
+  </div>
+</section>

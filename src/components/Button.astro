@@ -1,0 +1,12 @@
+---
+interface Props {
+  className?: string;
+  dataId?: number;
+}
+
+const { className, dataId} = Astro.props;
+---
+
+<button data-id={dataId} class={`${className} w-fit px-4 py-2 border rounded-md border-primary text-primary font-semibold hover:text-gray-200 hover:bg-primary hover:border-opacity-80 hover:bg-opacity-80 transition-all duration-200`}>
+  <slot />
+</button>

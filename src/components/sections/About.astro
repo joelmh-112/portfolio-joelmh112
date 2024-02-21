@@ -1,0 +1,40 @@
+---
+const birthDate = new Date("2001-07-20");
+const currentDate = new Date();
+let age = currentDate.getFullYear() - birthDate.getFullYear();
+if (
+  currentDate.getMonth() < birthDate.getMonth() ||
+  (currentDate.getMonth() === birthDate.getMonth() && currentDate.getDate() < birthDate.getDate())
+) {
+  age = currentDate.getFullYear() - birthDate.getFullYear() - 1;
+}
+---
+
+<section id="about">
+  <div class="content flex flex-col gap-14 lg:flex-row lg:justify-center">
+    <img
+      class="order-2 lg:order-1 rounded-full max-w-96 self-center w-full"
+      src="/images/joel_resized.webp"
+      alt="Una imagen de Joel con un abrigo posando de frente en un parque."
+    />
+    <div class="order-1 lg:order-2 flex flex-col gap-10">
+      <h1 class="font-oswald text-4xl">Sobre mí</h1>
+      <div class="flex flex-col gap-4 [&>*:nth-child(even)]:text-gray-400 max-w-4xl">
+        <p>Me llamo Joel Martínez Hernández, tengo {age} años y vivo en Menorca, Islas Baleares.</p>
+        <p>
+          Toda mi vida he estado inmerso en el mundo de la tecnología, usando ordenadores, jugando videojuegos, aunque no fue hasta los 18 años que
+          descubrí lo que era la programación y me interesé por ella.
+        </p>
+        <p>
+          Fue durante el grado superior cuando aprendí a programar, utilizando principalmente Java, además de aprender lenguajes como HTML, CSS,
+          JavaScript (antiguo) y PHP.
+        </p>
+        <p>
+          Actualmente, me encuentro trabajando como programador en la empresa donde realicé las prácticas del grado superior. He experimentado un gran
+          crecimiento desde entonces, pasando de usar un framework de PHP (Laravel) a trabajar con ReactJS y luego NextJS. En este momento, tengo como
+          referente a "midudev", con quien estoy ampliando mis conocimientos y aprendiendo cada día.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

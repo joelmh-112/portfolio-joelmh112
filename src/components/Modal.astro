@@ -1,0 +1,28 @@
+---
+import Close from "@/components/icons/Close.astro";
+interface Props {
+  id: string;
+  onClose: string;
+}
+const { id, onClose } = Astro.props;
+---
+
+<div
+  id={id}
+  class={`hidden fixed w-screen h-screen flex-col items-center justify-center bg-black z-[9999] top-0 bottom-0 left-0 right-0 p-6 bg-opacity-80 backdrop-blur`}
+>
+  <div class="max-w-3xl bg-background p-6 rounded-lg flex flex-col items-center">
+    <button class="self-end absolute" id="buttonClose">
+      <Close className="h-6 w-6" />
+    </button>
+    <slot />
+  </div>
+</div>
+
+<script define:vars={{id}}>
+  document.getElementById("buttonClose")?.addEventListener("click", () => {
+    console.log('eventDispatched');
+    const modal = document.getElementById(id);
+    modal.dispatchEvent(new CustomEvent("close",{bubbles:true}));
+  });
+</script>

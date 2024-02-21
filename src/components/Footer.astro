@@ -1,0 +1,19 @@
+---
+import SocialButtons from "./SocialButtons.astro";
+
+interface Props {
+  className?: string;
+  classNameContent?: string;
+}
+
+const { className, classNameContent } = Astro.props;
+
+const year = new Date().getFullYear();
+---
+
+<footer class={`${className} flex flex-col gap-6 bg-primary bg-opacity-30 `}>
+  <div class={`${classNameContent} flex flex-col gap-6 items-center lg:flex-row-reverse lg:justify-between py-6`}>
+    <SocialButtons className="flex gap-4" />
+    <p class="text-gray-400 font-semibold">JoelMH112 - {year}</p>
+  </div>
+</footer>

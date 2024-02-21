@@ -1,0 +1,50 @@
+---
+interface Props {
+  className?: string;
+  classNameContent?: string;
+}
+const { className, classNameContent } = Astro.props;
+const navItems = [
+  {
+    title: "Proyectos",
+    label: "proyectos",
+    url: "/#projects",
+  },
+  {
+    title: "Experiencia",
+    label: "experiencia",
+    url: "/#experience",
+  },
+  {
+    title: "Sobre mí",
+    label: "sobre-mi",
+    url: "/#about",
+  },
+];
+---
+
+<nav class={`${className} gap-4  bg-primaryOpacity bg-opacity-80 backdrop-blur-md fixed p-6 left-0 right-0 items-center z-[9999]`}>
+  <div class={`${classNameContent} flex items-center w-full justify-between`}>
+    <div class={` flex gap-2 items-center`}>
+      <img src="/images/logo_zafiro_2.webp" alt="Astro logo" class="h-6" /><span class="flex gap-0">
+        <span
+          class={`bg-gradient-to-tr from-[rgb(135,94,229)] via-[rgb(0,162,232)] to-[rgb(0,51,229)] bg-clip-text font-oswald text-[1.4rem] text-transparent `}
+          >Joel
+        </span>
+        <span
+          class={`bg-gradient-to-tr from-[rgb(0,51,229)] via-[rgb(0,162,232)] to-[rgb(135,94,229)] bg-clip-text font-oswald text-[1.4rem] text-transparent`}
+          >MH112
+        </span>
+      </span>
+    </div>
+    <ul class="flex gap-4">
+      {
+        navItems.map((item) => (
+          <li class="text-gray-400 hover:text-gray-50 transition-all ease-in-out duration-200">
+            <a href={item.url}>{item.title}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</nav>
