@@ -1,8 +1,12 @@
 ---
+export const prerender = false;
+
+
 import Layout from '@/layouts/Layout.astro'
 
 const {project_id} = Astro.params
 import { projects } from "@/lib/data";
+import { fade } from 'astro:transitions';
 
 if(!project_id){
     return {
@@ -16,9 +20,9 @@ const project = projects.find((project) => project.id === parseInt(project_id));
 ---
 
 <Layout title="JoelMH112 - Portfolio">
-    <div class="" transition:name={`project-box-${project?.id}`}>
-        <h1 class="text-3xl font-bold" transition:name={`project-title-${project?.id}`}>{project?.title}</h1>
-        <p transition:name={`project-description-${project?.id}`}>{project?.description}</p>
-        <img src={project?.image} alt={project?.title} class="w-full h-96 object-contain" transition:name={`project-image-${project?.id}`}/>
+    <div class="" transition:name={`project-box-${project?.id}`} transition:animate={fade({ duration: '2s' })}>
+        <h1 class="text-3xl font-bold" transition:name={`project-title-${project?.id}`} transition:animate={fade({ duration: '2s' })}>{project?.title}</h1>
+        <p transition:name={`project-description-${project?.id}`} transition:animate={fade({ duration: '2s' })}>{project?.description}</p>
+        <img src={project?.image} alt={project?.title} class="w-full h-96 object-contain" transition:name={`project image ${project?.id}`} transition:animate={fade({ duration: '2s' })}/>
     </div>
 </Layout>

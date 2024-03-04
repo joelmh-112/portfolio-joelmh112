@@ -3,6 +3,7 @@ import Button from "@/components/Button.astro";
 import Card from "@/components/Card.astro";
 import Link from "@/components/icons/Link.astro";
 import Modal from "@/components/Modal.astro";
+import {fade} from "astro:transitions";
 
 import { projects } from "@/lib/data";
 ---
@@ -16,9 +17,9 @@ import { projects } from "@/lib/data";
           <Card className={`flex flex-col gap-6 justify-between`} >
             <div class="flex flex-col gap-6">
               <header class="flex gap-4 w-full justify-between items-end flex-wrap">
-                <h2 class="font-raleway font-semibold text-2xl lg:text-3xl" transition:name={`project-title-${project.id}`}>{project.title}</h2>
+                <h2 class="font-raleway font-semibold text-2xl lg:text-3xl" transition:name={`project-title-${project.id}`} transition:animate={fade({ duration: '2s' })}>{project.title}</h2>
                 <div class="flex gap-4">
-                  <a href={`/projects/${project.id}`}><Button className="justify-self-end buttonProject" dataId={project.id} transition:name={`project-box-${project.id}`}>
+                  <a href={`/projects/${project.id}`}><Button className="justify-self-end buttonProject" dataId={project.id} transition:name={`project-box-${project.id}`} transition:animate={fade({ duration: '2s' })}>
                     Ver más...
                   </Button>
                   </a>
@@ -31,7 +32,7 @@ import { projects } from "@/lib/data";
                   )}
                 </div>
               </header>
-              <p class="text-gray-300 opacity-95" transition:name={`project-description-${project?.id}`}>{project.description}</p>
+              <p class="text-gray-300 opacity-95" transition:name={`project-description-${project?.id}`} transition:animate={fade({ duration: '2s' })}>{project.description}</p>
             </div>
             <div class="flex flex-col gap-6 bottom-0">
               <div class="flex gap-2 flex-wrap">
@@ -40,7 +41,7 @@ import { projects } from "@/lib/data";
                   <span class="bg-gray-primary bg-primary bg-opacity-20 p-2 rounded-md font-semibold text-primary">{tag}</span>
                 ))}
               </div>
-              <img src={project.image} alt={project.imageAlt} class="w-full h-auto object-cover rounded-md"  transition:name={`project-image-${project.id}`}/>
+              <img src={project.image} alt={project.imageAlt} class="w-14 h-auto object-contain rounded-md"  transition:name={`project image ${project.id}`} transition:animate={fade({ duration: '2s' })}/>
             </div>
           </Card>
         ))
