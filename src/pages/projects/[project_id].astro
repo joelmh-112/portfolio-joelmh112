@@ -17,13 +17,13 @@ const project = projects.find((project) => project.id === parseInt(project_id));
 ---
 
 <Layout title="JoelMH112 - Portfolio">
-  <section class="flex flex-col items-center py-20 min-h-[81dvh]">
+  <section class="flex flex-col items-center lg:py-20 min-h-[81dvh] p-4">
     <div
-      class="max-w-xl border rounded-lg border-primary border-opacity-70 gap-10 p-10 flex flex-col items-center"
+      class="max-w-xl border rounded-lg border-primary border-opacity-70 gap-10 px-5 py-10 lg:p-10 flex flex-col items-center"
       transition:name={`project-box-${project?.id}`}
     >
       <h1 class="text-3xl font-bold" transition:name={`project-title-${project?.id}`}>{project?.title}</h1>
-      <p transition:name={`project-description-${project?.id}`}>{project?.description}</p>
+      <div transition:name={`project-description-${project?.id}`} class="flex flex-col gap-3" set:html={project?.longDescription} />
       <img src={project?.image} alt={project?.title} class="w-full rounded h-auto object-contain" transition:name={`project-image-${project?.id}`} />
     </div>
   </section>
