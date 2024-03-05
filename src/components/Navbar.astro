@@ -25,7 +25,7 @@ const navItems = [
 
 <nav class={`${className} gap-4  bg-primaryOpacity bg-opacity-80 backdrop-blur-md fixed p-6 left-0 right-0 items-center z-[9999]`}>
   <div class={`${classNameContent} flex items-center w-full justify-between`}>
-    <div class={` flex gap-2 items-center`}>
+    <a href="/" class={` flex gap-2 items-center`} transition:animate="none">
       <img src="/images/logo_zafiro_2.webp" alt="Astro logo" class="h-6" /><span class="flex gap-0">
         <span
           class={`bg-gradient-to-tr from-[rgb(135,94,229)] via-[rgb(0,162,232)] to-[rgb(0,51,229)] bg-clip-text font-oswald text-[1.4rem] text-transparent `}
@@ -36,7 +36,7 @@ const navItems = [
           >MH112
         </span>
       </span>
-    </div>
+    </a>
     <ul class="flex gap-4">
       {
         navItems.map((item) => (

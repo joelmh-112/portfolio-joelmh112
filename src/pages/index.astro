@@ -8,15 +8,11 @@ import Navbar from "@/components/Navbar.astro";
 import Footer from "@/components/Footer.astro";
 ---
 
-<Layout title="JoelMH112 - Portfolio">
-  <main class="text-white flex flex-col">
-    <Navbar className="hidden lg:flex lg:justify-center lg:px-10" classNameContent="lg:max-w-[1500px] w-full" />
-    <Banner className="lg:pt-36" />
+<Layout title="JoelMH112 - Portfolio">    
+    <Banner/>
     <Projects />
     <Experience />
     <About />
-    <Footer className="flex flex-col items-center lg:px-10" classNameContent="lg:max-w-[1500px] w-full" />
-  </main>
 </Layout>
 <style is:global>
   section {
