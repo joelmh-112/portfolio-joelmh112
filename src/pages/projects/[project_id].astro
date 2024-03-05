@@ -1,28 +1,26 @@
 ---
 export const prerender = false;
 
+import Layout from "@/layouts/Layout.astro";
 
-import Layout from '@/layouts/Layout.astro'
-
-const {project_id} = Astro.params
+const { project_id } = Astro.params;
 import { projects } from "@/lib/data";
 
-if(!project_id){
-    return {
-        status: 404,
-        error: new Error('Project not found')
-    }
-
+if (!project_id) {
+  return {
+    status: 404,
+    error: new Error("Project not found"),
+  };
 }
 
 const project = projects.find((project) => project.id === parseInt(project_id));
 ---
 
 <Layout title="JoelMH112 - Portfolio">
-    <section  class="flex flex-col items-center">
-        <div class="max-w-7xl" transition:name={`project-box-${project?.id}`}></div>
-        <h1 class="text-3xl font-bold" transition:name={`project-title-${project?.id}`} >{project?.title}</h1>
-        <p transition:name={`project-description-${project?.id}`} >{project?.description}</p>
-        <img src={project?.image} alt={project?.title} class="w-80 h-auto object-contain" transition:name={`project-image-${project?.id}`}/>
-    </div>
+  <section class="flex flex-col items-center">
+    <div class="max-w-7xl" transition:name={`project-box-${project?.id}`}></div>
+    <h1 class="text-3xl font-bold" transition:name={`project-title-${project?.id}`}>{project?.title}</h1>
+    <p transition:name={`project-description-${project?.id}`}>{project?.description}</p>
+    <img src={project?.image} alt={project?.title} class="w-80 h-auto object-contain" transition:name={`project-image-${project?.id}`} />
+  </section>
 </Layout>
