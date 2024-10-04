@@ -24,6 +24,14 @@ const experiences: Experience[] = [
     tag: "Profesional",
   },
   {
+    title:"Desarrollador web para La Velada IV",
+    description:
+      "Desarrollé la página web de La Velada IV de Ibai Llanos junto a Midudev (Miguel Ángel Durán) de la mano de InfoJobs. Utilicé AstroJS + Typescript + TailwindCSS para el desarrollo de la web. También fue el primer proyecto Open Source que tuve el placer de gestionar.",
+    incio: new Date(2024, 2, 6),
+    fin: new Date(2024, 2, 22),
+    tag: "Profesional",
+  },
+  {
     title: "Prácticas FPGS en Menorca Online SL",
     description:
       "Una vez finalicé el grado superior, realicé prácticas en Menorca Online SL, donde se me asignaron varios proyectos donde aprendí a usar nuevas tecnologías para mí como Laravel, Vue.js, etc.",
@@ -83,7 +91,7 @@ const experiences: Experience[] = [
             <footer class="flex gap-4 justify-between">
               <span class="text-primary font-semibold">
                 {experience.incio.getFullYear() === experience.fin.getFullYear()
-                  ? experience.fin.getMonth() - experience.incio.getMonth() + " meses"
+                  ? (experience.fin.getMonth() - experience.incio.getMonth() < 1 ? "1 mes" : experience.fin.getMonth() - experience.incio.getMonth()  + " meses")
                   : experience.fin.getFullYear() - experience.incio.getFullYear() + " años"}
               </span>
               <span class="capitalize text-primary opacity-70 font-semibold">
