@@ -1,0 +1,20 @@
+---
+import Navbar from "@/components/Navbar.astro";
+import Footer from "@/components/Footer.astro";
+import { ClientRouter, ViewTransitions } from "astro:transitions";
+import Layout from "./Layout.astro";
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<Layout title={title}>
+  <ClientRouter slot="meta" />
+  <Navbar className="hidden lg:flex lg:justify-center lg:px-10" classNameContent="lg:max-w-[1500px] w-full" slot="before" />
+  <main class="lg:pt-20">
+    <slot />
+  </main>
+  <Footer className="flex flex-col items-center lg:px-10" classNameContent="lg:max-w-[1500px] w-full" slot="after" />
+</Layout>
