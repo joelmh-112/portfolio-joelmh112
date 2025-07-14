@@ -1,0 +1,13 @@
+---
+const { siteTitle } = Astro.locals;
+---
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>{siteTitle}</title>
+	</head>
+	<body>
+		<nav>Panel de administración 🧠</nav>
+		<slot />
+	</body>
+</html>
