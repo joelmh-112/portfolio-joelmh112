@@ -10,8 +10,7 @@ interface Props {
 const { title } = Astro.props;
 ---
 
-<Layout title={title}>
-  <ClientRouter slot="meta" />
+<Layout title={title} activateTransitions>
   <Navbar className="hidden lg:flex lg:justify-center lg:px-10" classNameContent="lg:max-w-[1500px] w-full" slot="before" />
   <main class="lg:pt-20">
     <slot />
