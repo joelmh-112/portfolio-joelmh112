@@ -1,0 +1,27 @@
+---
+interface Props {
+  className?: string;
+  label?: string;
+  id?: string;
+  name?: string;
+  value?: string;
+  placeholder?: string;
+  required?: boolean;
+  disabled?: boolean;
+  rows?: number;
+  onInput?: any;
+}
+const { className, label, ...rest } = Astro.props;
+---
+
+{
+  label && (
+    <label for={rest.id} class="block mb-2 text-gray-300 font-semibold font-raleway">
+      {label}
+    </label>
+  )
+}
+<textarea
+  class={`w-full px-4 py-2 border rounded-md border-primary bg-gray-900 text-gray-100 font-raleway focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-200 placeholder-gray-500 resize-none ${className ?? ""}`}
+  {...rest}></textarea>
+

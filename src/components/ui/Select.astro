@@ -1,0 +1,28 @@
+---
+interface Props {
+  className?: string;
+  label?: string;
+  id?: string;
+  name?: string;
+  value?: string;
+  required?: boolean;
+  disabled?: boolean;
+  onInput?: any;
+}
+const { className, label, ...rest } = Astro.props;
+---
+
+{
+  label && (
+    <label for={rest.id} class="block mb-2 text-gray-300 font-semibold font-raleway">
+      {label}
+    </label>
+  )
+}
+<select
+  class={`w-full px-4 py-2 border rounded-md border-primary bg-gray-900 text-gray-100 font-raleway focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-200 ${className ?? ""}`}
+  {...rest}
+>
+  <slot />
+</select>
+

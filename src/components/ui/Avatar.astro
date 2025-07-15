@@ -1,0 +1,39 @@
+---
+interface Props {
+  className?: string;
+  src?: string;
+  alt?: string;
+  size?: number;
+  name?: string;
+}
+const { className, src, alt, size = 48, name } = Astro.props;
+const initials = name
+  ? name
+      .split(" ")
+      .map((n) => n[0])
+      .join("")
+      .slice(0, 2)
+      .toUpperCase()
+  : "";
+---
+
+{
+  src ? (
+    <img
+      src={src}
+      alt={alt ?? name}
+      width={size}
+      height={size}
+      class={`rounded-full border-2 border-primary object-cover ${className ?? ""}`}
+      style={`width:${size}px;height:${size}px;`}
+    />
+  ) : (
+    <div
+      class={`rounded-full border-2 border-primary bg-gray-800 flex items-center justify-center text-primary font-bold font-oswald ${className ?? ""}`}
+      style={`width:${size}px;height:${size}px;`}
+    >
+      {initials}
+    </div>
+  )
+}
+

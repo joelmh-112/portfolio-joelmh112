@@ -1,0 +1,27 @@
+---
+interface Props {
+  className?: string;
+  type?: "info" | "success" | "error" | "warning";
+}
+const { className, type = "info" } = Astro.props;
+const typeStyles = {
+  info: "bg-blue-900 border-blue-500 text-blue-200",
+  success: "bg-green-900 border-green-500 text-green-200",
+  error: "bg-red-900 border-red-500 text-red-200",
+  warning: "bg-yellow-900 border-yellow-500 text-yellow-200",
+};
+const icons = {
+  info: '<svg class="h-5 w-5 text-blue-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M12 20a8 8 0 100-16 8 8 0 000 16z"/></svg>',
+  success:
+    '<svg class="h-5 w-5 text-green-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>',
+  error:
+    '<svg class="h-5 w-5 text-red-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>',
+  warning:
+    '<svg class="h-5 w-5 text-yellow-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M12 2a10 10 0 100 20 10 10 0 000-20z"/></svg>',
+};
+---
+
+<div class={`flex items-start gap-3 border-l-4 rounded-md p-4 ${typeStyles[type]} ${className ?? ""}`} set:html={icons[type]}>
+  <div class="pt-0.5"><slot /></div>
+</div>
+

@@ -1,0 +1,17 @@
+---
+interface Props {
+  className?: string;
+  text: string;
+}
+const { className, text } = Astro.props;
+---
+
+<span class="relative group">
+  <slot />
+  <span
+    class={`absolute left-1/2 -translate-x-1/2 bottom-full mb-2 px-3 py-1 rounded bg-gray-900 text-gray-100 text-xs whitespace-nowrap opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-200 z-50 ${className ?? ""}`}
+    >{text}
+    <span class="absolute left-1/2 -translate-x-1/2 top-full w-2 h-2 bg-gray-900 rotate-45"></span>
+  </span>
+</span>
+

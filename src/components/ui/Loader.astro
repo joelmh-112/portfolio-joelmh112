@@ -1,0 +1,24 @@
+---
+interface Props {
+  className?: string;
+  size?: number;
+}
+const { className, size = 32 } = Astro.props;
+---
+
+<svg class={`animate-spin ${className ?? ""}`} width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fondo gris -->
+  <circle class="opacity-25 stroke-gray-400" cx="12" cy="12" r="10" stroke-width="4" fill="none"></circle>
+  <!-- Arco animado -->
+  <circle
+    class="stroke-primary"
+    cx="12"
+    cy="12"
+    r="10"
+    stroke-width="4"
+    fill="none"
+    stroke-dasharray="60"
+    stroke-dashoffset="15"
+    stroke-linecap="round"></circle>
+</svg>
+

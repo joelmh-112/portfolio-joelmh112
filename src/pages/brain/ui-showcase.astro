@@ -1,0 +1,73 @@
+---
+import BrainLayout from "../../layouts/BrainLayout.astro";
+import Input from "../../components/ui/Input.astro";
+import Textarea from "../../components/ui/Textarea.astro";
+import Select from "../../components/ui/Select.astro";
+import Checkbox from "../../components/ui/Checkbox.astro";
+import Radio from "../../components/ui/Radio.astro";
+import Switch from "../../components/ui/Switch.astro";
+import Alert from "../../components/ui/Alert.astro";
+import Badge from "../../components/ui/Badge.astro";
+import Avatar from "../../components/ui/Avatar.astro";
+import Loader from "../../components/ui/Loader.astro";
+import Tooltip from "../../components/ui/Tooltip.astro";
+import Breadcrumb from "../../components/ui/Breadcrumb.astro";
+import FormGroup from "../../components/ui/FormGroup.astro";
+
+let radioValue = "option1";
+let checked = false;
+let switchOn = false;
+let page = 1;
+---
+
+<BrainLayout title="UI Showcase">
+  <div class="max-w-3xl mx-auto py-12 flex flex-col gap-12">
+    <h1 class="text-4xl font-oswald mb-6 text-center">UI Components Showcase</h1>
+    <section class="flex flex-col gap-6">
+      <h2 class="text-2xl font-semibold font-oswald">Inputs</h2>
+      <FormGroup label="Input label" id="input1">
+        <Input id="input1" placeholder="Escribe algo..." />
+      </FormGroup>
+      <FormGroup label="Textarea label" id="textarea1">
+        <Textarea id="textarea1" placeholder="Texto largo..." rows={3} />
+      </FormGroup>
+      <FormGroup label="Select label" id="select1">
+        <Select id="select1">
+          <option value="">Selecciona una opción</option>
+          <option value="1">Opción 1</option>
+          <option value="2">Opción 2</option>
+        </Select>
+      </FormGroup>
+      <FormGroup>
+        <Checkbox label="Checkbox de ejemplo" id="checkbox1" />
+      </FormGroup>
+      <FormGroup>
+        <Radio label="Opción 1" name="radioGroup" id="radio1" value="option1" checked={radioValue === "option1"} />
+        <Radio label="Opción 2" name="radioGroup" id="radio2" value="option2" checked={radioValue === "option2"} />
+      </FormGroup>
+      <FormGroup>
+        <Switch label="Switch de ejemplo" id="switch1" />
+      </FormGroup>
+    </section>
+    <section class="flex flex-col gap-6">
+      <h2 class="text-2xl font-semibold font-oswald">Alert, Badge, Avatar, Loader, Tooltip</h2>
+      <Alert type="info">Esto es una alerta de información</Alert>
+      <Alert type="success">Esto es una alerta de éxito</Alert>
+      <Alert type="error">Esto es una alerta de error</Alert>
+      <Alert type="warning">Esto es una alerta de advertencia</Alert>
+      <div class="flex gap-4 items-center">
+        <Badge>Badge ejemplo</Badge>
+        <Avatar name="Joel Martínez" />
+        <Avatar src="/images/joel_resized.webp" name="Joel Martínez" />
+        <Loader />
+        <Tooltip text="Tooltip de ejemplo">
+          <span class="underline cursor-pointer">Pasa el ratón</span>
+        </Tooltip>
+      </div>
+    </section>
+    <section class="flex flex-col gap-6">
+      <h2 class="text-2xl font-semibold font-oswald">Tabs, Breadcrumb, Pagination</h2>
+      <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Brain", href: "/brain" }, { label: "UI" }]} />
+    </section>
+  </div>
+</BrainLayout>

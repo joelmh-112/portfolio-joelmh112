@@ -1,0 +1,26 @@
+---
+interface Props {
+  className?: string;
+  label?: string;
+  id?: string;
+  name?: string;
+  checked?: boolean;
+  required?: boolean;
+  disabled?: boolean;
+  onInput?: any;
+}
+const { className, label, ...rest } = Astro.props;
+---
+
+<label class={`inline-flex items-center gap-3 cursor-pointer select-none relative ${className ?? ""}`}>
+  <input type="checkbox" class="peer sr-only" {...rest} />
+  <div class="w-11 h-6 bg-gray-700 rounded-full transition-colors duration-200 relative overflow-hidden peer-checked:bg-primary">
+    <div class="switch-knob absolute top-0.5 left-1 w-5 h-5 bg-white rounded-full transition-all duration-200"></div>
+  </div>
+  {label && <span class="text-gray-300 font-raleway font-medium">{label}</span>}
+  <style>
+    input[type="checkbox"]:checked ~ div > .switch-knob {
+      left: 20px;
+    }
+  </style>
+</label>
