@@ -6,6 +6,7 @@ import Modal from "@/components/Modal.astro";
 import { fade } from "astro:transitions";
 
 import { projects } from "@/lib/data";
+import Badge from "../ui/Badge.astro";
 ---
 
 <section id="projects" class="">
@@ -41,9 +42,9 @@ import { projects } from "@/lib/data";
             </div>
             <div class="flex flex-col gap-6 bottom-0">
               <div class="flex gap-2 flex-wrap">
-                {project.link && <span class="text-green-500 bg-green-500 bg-opacity-20 p-2 rounded-md font-semibold">Online</span>}
+                {project.link && <Badge type="success">Online</Badge>}
                 {project.tags.map((tag) => (
-                  <span class="bg-gray-primary bg-primary bg-opacity-20 p-2 rounded-md font-semibold text-primary">{tag}</span>
+                  <Badge >{tag}</Badge>
                 ))}
               </div>
               <img
