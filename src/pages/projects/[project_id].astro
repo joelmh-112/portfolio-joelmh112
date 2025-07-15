@@ -2,6 +2,7 @@
 export const prerender = false;
 
 import Layout from "@/layouts/Layout.astro";
+import PortfolioLayout from "@/layouts/PortfolioLayout.astro";
 
 const { project_id } = Astro.params;
 import { projects } from "@/lib/data";
@@ -16,7 +17,7 @@ if (!project_id) {
 const project = projects.find((project) => project.id === parseInt(project_id));
 ---
 
-<Layout title="JoelMH112 - Portfolio">
+<PortfolioLayout title="Portfolio">
   <section class="flex flex-col items-center lg:py-20 min-h-[81dvh] p-4">
     <div
       class="max-w-xl border rounded-lg border-primary border-opacity-70 gap-10 px-5 py-10 lg:p-10 flex flex-col items-center"
@@ -27,4 +28,4 @@ const project = projects.find((project) => project.id === parseInt(project_id));
       <img src={project?.image} alt={project?.title} class="w-full rounded h-auto object-contain" transition:name={`project-image-${project?.id}`} />
     </div>
   </section>
-</Layout>
+</PortfolioLayout>
