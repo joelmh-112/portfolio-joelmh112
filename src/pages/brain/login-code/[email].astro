@@ -1,0 +1,51 @@
+---
+import BrainLayout from "@/layouts/BrainLayout.astro";
+import FormGroup from "@/components/ui/FormGroup.astro";
+import Input from "@/components/ui/Input.astro";
+import Button from "@/components/ui/Button.astro";
+
+const { email } = Astro.params;
+const decodedEmail = decodeURIComponent(email);
+---
+<BrainLayout title="Verifica tu código">
+  <div class="flex items-center justify-center min-h-screen bg-background">
+    <form id="verify-code-form" class="bg-gray-900 bg-opacity-80 p-8 rounded-xl shadow-lg flex flex-col gap-6 w-full max-w-sm border border-primary border-opacity-30">
+      <h1 class="text-3xl font-oswald text-primary text-center mb-2">Introduce el código</h1>
+      <FormGroup label="Email" id="email">
+        <Input id="email" name="email" type="email" placeholder="tu@email.com" value={decodedEmail} required disabled/>
+      </FormGroup>
+      <FormGroup label="Código" id="code">
+        <Input id="code" name="code" type="text" placeholder="Código recibido" required />
+      </FormGroup>
+      <Button type="submit" className="w-full mt-2">Iniciar sesión</Button>
+    </form>
+    <script define:vars={{decodedEmail}}>
+      // Prellenar el email si viene por query param
+      const email = decodedEmail;
+      const form = document.getElementById('verify-code-form');
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = form.elements['email'].value.trim();
+        const code = form.elements['code'].value.trim();
+        const API_URL = import.meta.env.PUBLIC_API_URL;
+        try {
+          const res = await fetch(`${API_URL}/auth/login-email`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, code })
+          });
+          if (res.ok) {
+            const data = await res.json();
+            // Guarda el token en localStorage y redirige
+            localStorage.setItem('token', data.token);
+            window.location.href = '/brain'; // o la ruta privada que corresponda
+          } else {
+            alert('Código incorrecto o expirado.');
+          }
+        } catch (err) {
+          alert('Error de red.');
+        }
+      });
+    </script>
+  </div>
+</BrainLayout>

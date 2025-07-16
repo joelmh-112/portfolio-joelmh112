@@ -1,4 +1,4 @@
-import { defineConfig } from "astro/config";
+import { defineConfig, envField } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 
 import vercel from "@astrojs/vercel";
@@ -10,4 +10,9 @@ export default defineConfig({
   adapter: vercel({
     imageService: true,
   }),
+  env:{
+    schema:{
+      API_URL:envField.string({context:"client", access:"public", description:"API URL for the backend service"}),
+    }
+  }
 });
