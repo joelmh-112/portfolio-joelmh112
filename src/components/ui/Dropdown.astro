@@ -1,0 +1,12 @@
+---
+
+---
+
+<div class="group/dropdown flex flex-col w-full relative">
+  <div class="dropdown-label cursor-pointer">
+    <slot name="label" />
+  </div>
+  <div class="dropdown-content opacity-0 pointer-events-none group-hover/dropdown:opacity-100 group-hover/dropdown:pointer-events-auto transition-all duration-200">
+    <slot />
+  </div>
+</div>

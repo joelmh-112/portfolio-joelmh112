@@ -1,12 +1,12 @@
 ---
-import BrainLayout from "@/layouts/BrainLayout.astro";
 import FormGroup from "../../components/ui/FormGroup.astro";
 import Input from "../../components/ui/Input.astro";
 import Button from "../../components/ui/Button.astro";
+import Layout from "@/layouts/Layout.astro";
 ---
 
-<BrainLayout title="Login">
-  <div class="flex items-center justify-center min-h-screen bg-background">
+<Layout title="Login">
+  <div class="flex items-center justify-center">
     <form
       id="login-email-form"
       class="bg-gray-900 bg-opacity-80 p-8 rounded-xl shadow-lg flex flex-col gap-6 w-full max-w-sm border border-primary border-opacity-30"
@@ -18,7 +18,7 @@ import Button from "../../components/ui/Button.astro";
       <Button type="submit" className="w-full mt-2">Enviar código</Button>
     </form>
     <script>
-      import {API_URL} from 'astro:env/client';
+      import { API_URL } from "astro:env/client";
       const form = document.getElementById("login-email-form") as HTMLFormElement | null;
       if (!form) {
         throw new Error("No se encontró el formulario");
@@ -38,9 +38,10 @@ import Button from "../../components/ui/Button.astro";
             alert("Error enviando el código.");
           }
         } catch (err) {
+          console.log(err);
           alert("Error de red.");
         }
       });
     </script>
   </div>
-</BrainLayout>
+</L>
