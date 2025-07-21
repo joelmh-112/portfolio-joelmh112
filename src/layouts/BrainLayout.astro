@@ -40,7 +40,7 @@ const menuItems = [
                     <svg class="h-7 w-7 text-primary aspect-square" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                       <path d={item.icon} />
                     </svg>
-                    {item.label}
+                    <span class="opacity-0 w-0 group-hover:opacity-100 group-hover:w-20 transition-all duration-300 text-white py-1 rounded shadow-lg pointer-events-none">{item.label}</span>
                   </span>
                   {
                     item.items.map(subItem => (
@@ -49,7 +49,7 @@ const menuItems = [
                       </a>
                     ))
                   }
-              </Dro>
+              </Dropdown>
               : (
                 <a href={item.href} class="group gap-2 flex justify-start items-center">
                   <svg class="h-7 w-7 text-primary aspect-square" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
