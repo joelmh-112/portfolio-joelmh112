@@ -1,11 +1,11 @@
 ---
-import { ClientRouter } from 'astro:transitions';
+import { ClientRouter } from "astro:transitions";
 
 interface Props {
   title: string;
   activateTransitions?: boolean;
 }
-const { title,activateTransitions} = Astro.props;
+const { title, activateTransitions } = Astro.props;
 ---
 
 <!doctype html>
@@ -17,10 +17,10 @@ const { title,activateTransitions} = Astro.props;
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="generator" content={Astro.generator} />
     <title>{title} - JoelMH112</title>
-    <slot name="head"/>
+    <slot name="head" />
   </head><body class="bg-background relative w-screen scroll-auto max-w-[100%]">
     <slot name="before" />
-    <main class="lg:pt-20">
+    <main>
       <slot />
     </main>
     <slot name="after" />

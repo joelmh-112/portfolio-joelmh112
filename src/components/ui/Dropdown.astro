@@ -1,0 +1,12 @@
+---
+
+---
+
+<div class="group/dropdown flex flex-col relative">
+  <slot name="label" />
+  <div
+    class="dropdown-content opacity-0 w-0 h-0 pointer-events-none group-hover/dropdown:opacity-100 group-hover/dropdown:pointer-events-auto group-hover/dropdown:w-auto group-hover/dropdown:h-auto transition-all duration-200"
+  >
+    <slot />
+  </div>
+</div>
