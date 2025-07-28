@@ -35,4 +35,30 @@ export const finance = {
       return category;
     },
   }),
+  deleteCategory: defineAction({
+    accept: "form",
+    input: z.object({
+      id: z.string().uuid("ID inválido"),
+    }),
+    handler: async (input, { request }) => {
+      const token = getAuthTokenFromRequest(request);
+      if (!token) {
+        throw new Error("No estás autenticado");
+      }
+
+      const res = await fetch(`${API_URL}/categories/${input.id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!res.ok) {
+        const error = await res.json();
+        throw new Error(error.message || "Error al eliminar la categoría");
+      }
+
+      return { success: true };
+    }
+  }),
 };

@@ -47,11 +47,13 @@ const { title, activateTransitions } = Astro.props;
         src: url("/fonts/Oswald/Oswald-Regular.ttf");
         font-weight: normal;
       }
+      body{
+        @apply font-raleway text-gray-300;
+      }
 
       * {
         scrollbar-width: thin;
         scrollbar-color: rgba(123, 74, 226, 0.6) #1f2937;
-        @apply font-raleway text-gray-300;
         scroll-behavior: smooth;
       }
 
