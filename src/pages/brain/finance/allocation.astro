@@ -1,0 +1,73 @@
+---
+import BrainLayout from "@/layouts/BrainLayout.astro";
+
+import { API_URL } from "astro:env/client";
+import type { Category } from "@/types/Category";
+
+const token = Astro.cookies.get("auth_token")?.value;
+
+const categories: Category[] = await fetch(`${API_URL}/categories`, {
+    credentials: "include",
+    headers: {
+        Authorization: token ? `Bearer ${token}` : "",
+    },
+})
+    .then((res) => res.json())
+    .catch((err) => {
+        console.error("Error fetching categories:", err);
+        return [];
+    });
+
+console.log("Fetched categories:", categories);
+---
+
+<BrainLayout title="Gestión de categorías">
+  <div class="p-10 max-w-2xl mx-auto">
+    <h2 class="text-3xl font-oswald text-primary mb-6">Categorías de transacciones</h2>
+    <div id="categories-list" class="flex flex-col gap-4 mb-8">
+      {categories.length > 0 ? (
+        categories.map((category) => (
+          <div class="bg-gray-900 bg-opacity-80 p-4 rounded-lg shadow-md flex justify-between items-center">
+            <span class="text-white font-oswald">{category.name}</span>
+            <span class="text-primary font-bold">{category.percentage}%</span>
+          </div>
+        ))
+      ) : (
+        <p class="text-gray-500">Aún no existen categorías</p>
+      )}
+    </div>
+    <div class="bg-gray-900 bg-opacity-80 p-6 rounded-lg shadow-md">
+      <h3 class="text-xl font-oswald text-primary mb-4">Crear nueva categoría</h3>
+      <form id="create-category-form" class="flex flex-col gap-4">
+        <input type="text" name="name" placeholder="Nombre" class="px-4 py-2 rounded bg-gray-800 text-white" required />
+        <input type="number" name="percentage" placeholder="Porcentaje" min="0" max="100" class="px-4 py-2 rounded bg-gray-800 text-white" required />
+        <button type="submit" class="bg-primary text-white px-4 py-2 rounded font-semibold">Crear</button>
+      </form>
+      <div id="form-message" class="mt-2 text-sm"></div>
+      <script define:vars={{API_URL,token}}>
+        document.getElementById('create-category-form').addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const form = e.target;
+          const name = form.name.value.trim();
+          const percentage = parseInt(form.percentage.value, 10);
+          const res = await fetch(`${API_URL}/categories`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': token ? `Bearer ${token}` : ''
+            },
+            body: JSON.stringify({ name, percentage })
+          });
+          const msg = document.getElementById('form-message');
+          if (res.ok) {
+            msg.textContent = 'Categoría creada correctamente.';
+            msg.className = 'mt-2 text-green-400';
+            setTimeout(() => window.location.reload(), 1000);
+          } else {
+            msg.textContent = 'Error al crear la categoría.';
+            msg.className = 'mt-2 text-red-400';
+          }
+        });
+      </script>
+    </div>
+</BrainLayout>
