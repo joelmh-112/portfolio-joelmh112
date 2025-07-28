@@ -1,0 +1,29 @@
+---
+import BrainLayout from "@/layouts/BrainLayout.astro";
+---
+<BrainLayout title="Perfil">
+  <div class="p-10 max-w-xl mx-auto">
+    <h2 class="text-3xl font-oswald text-primary mb-6">Perfil de usuario</h2>
+    <div id="user-profile" class="bg-gray-900 rounded-lg p-6 shadow flex flex-col gap-4 text-white">
+      <div class="text-gray-400">Cargando datos de usuario...</div>
+    </div>
+    <script>
+      const user = JSON.parse(localStorage.getItem("user") || "null");
+      if (user) {
+        document.getElementById("user-profile").innerHTML = `
+          <div class='flex items-center gap-4'>
+            <div class='w-16 h-16 rounded-full bg-primary text-white flex items-center justify-center text-3xl font-oswald'>${user.name ? user.name[0].toUpperCase() : user.email[0].toUpperCase()}</div>
+            <div>
+              <div class='text-xl font-semibold text-white'>${user.name || "Sin nombre"}</div>
+              <div class='text-gray-400'>${user.email}</div>
+            </div>
+          </div>
+          <div><span class='text-gray-400'>ID:</span> <span class='text-white'>${user.id}</span></div>
+          <div><span class='text-gray-400'>Creado el:</span> <span class='text-white'>${new Date(user.createdAt).toLocaleString()}</span></div>
+        `;
+      } else {
+        document.getElementById("user-profile").innerHTML = `<div class='text-gray-400'>No hay datos de usuario.</div>`;
+      }
+    </script>
+  </div>
+</BrainLayout>
