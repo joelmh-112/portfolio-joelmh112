@@ -1,33 +1,34 @@
 ---
 import BrainLayout from "@/layouts/BrainLayout.astro";
-import { actions } from 'astro:actions';
+import { actions } from "astro:actions";
 import { API_URL } from "astro:env/client";
 import type { Category } from "@/types/Category";
+import Modal from "@/components/ui/Modal.astro";
+import { navigate } from "astro:transitions/client";
+import Trash from "@/components/ui/icons/Trash.astro";
 
 const token = Astro.cookies.get("auth_token")?.value;
 
 const categories: Category[] = await fetch(`${API_URL}/categories`, {
-    credentials: "include",
-    headers: {
-        Authorization: token ? `Bearer ${token}` : "",
-    },
+  credentials: "include",
+  headers: {
+    Authorization: token ? `Bearer ${token}` : "",
+  },
 })
-    .then((res) => res.json())
-    .catch((err) => {
-        console.error("Error fetching categories:", err);
-        return [];
-    });
+  .then((res) => res.json())
+  .catch((err) => {
+    console.error("Error fetching categories:", err);
+    return [];
+  });
 
 console.log("Fetched categories:", categories);
 
 const result = Astro.getActionResult(actions.finance.createCategory);
 if (result) {
-    if(!result.error) {
-        console.log("Category created:", result);
-        return Astro.redirect("/brain/finance/allocation");
-    } else {
-        console.error("Error creating category:", result.error);
-    }
+  if (!result.error) {
+    console.log("Category created:", result);
+    return Astro.redirect("/brain/finance/allocation");
+  }
 }
 ---
 
@@ -35,16 +36,28 @@ if (result) {
   <div class="p-10 max-w-2xl mx-auto">
     <h2 class="text-3xl font-oswald text-primary mb-6">Categorías de transacciones</h2>
     <div id="categories-list" class="flex flex-col gap-4 mb-8">
-      {categories.length > 0 ? (
-        categories.map((category) => (
-          <div class="bg-gray-900 bg-opacity-80 p-4 rounded-lg shadow-md flex justify-between items-center">
-            <span class="text-white font-oswald">{category.name}</span>
-            <span class="text-primary font-bold">{category.percentage}%</span>
-          </div>
-        ))
-      ) : (
-        <p class="text-gray-500">Aún no existen categorías</p>
-      )}
+      {
+        categories.length > 0 ? (
+          categories.map((category) => (
+            <div class="bg-gray-900 bg-opacity-80 p-4 rounded-lg shadow-md flex justify-between items-center">
+              <span class="text-white font-oswald">{category.name}</span>
+              <span class="text-primary font-bold">{category.percentage}%</span>
+              <form method="POST" action={actions.finance.deleteCategory}>
+                <input type="hidden" name="id" value={category.id} />
+                <button
+                  type="submit"
+                  title="Eliminar categoría"
+                  onclick="return confirm('¿Seguro que deseas eliminar esta categoría?');"
+                >
+                  <Trash className="text-red-500" />
+                </button>
+              </form>
+            </div>
+          ))
+        ) : (
+          <p class="text-gray-500">Aún no existen categorías</p>
+        )
+      }
     </div>
     <div class="bg-gray-900 bg-opacity-80 p-6 rounded-lg shadow-md">
       <h3 class="text-xl font-oswald text-primary mb-4">Crear nueva categoría</h3>
@@ -54,4 +67,12 @@ if (result) {
         <button type="submit" class="bg-primary text-white px-4 py-2 rounded font-semibold">Crear</button>
       </form>
     </div>
+    {
+      result?.error && (
+        <Modal open={true} acceptLabel="Cerrar">
+          <p class="text-red-500">{result.error}</p>
+        </Modal>
+      )
+    }
+  </div>
 </BrainLayout>

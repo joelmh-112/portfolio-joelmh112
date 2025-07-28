@@ -1,0 +1,35 @@
+---
+interface Props {
+  open?: boolean;
+  onClose?: () => void;
+  acceptLabel?: string;
+}
+const { open = false, onClose, acceptLabel = "Aceptar" } = Astro.props;
+---
+
+
+{open && (
+  <div id="modal-backdrop" class="fixed inset-0 z-[9999] bg-black bg-opacity-70 flex items-center justify-center" style="backdrop-filter: blur(2px);">
+    <div id="modal-content" class="bg-background rounded-lg shadow-lg p-8 relative min-w-[300px] max-w-lg">
+      <slot />
+      <button id="modal-accept" class="mt-6 px-4 py-2 bg-primary text-white rounded font-semibold w-full">{acceptLabel}</button>
+    </div>
+  </div>
+)}
+
+<script define:vars={{ open, onClose }}>
+  if (open) {
+    const backdrop = document.getElementById("modal-backdrop");
+    const modalContent = document.getElementById("modal-content");
+    const acceptBtn = document.getElementById("modal-accept");
+    function closeModal() {
+      console.log(typeof onClose, onClose);
+      if (typeof onClose === "function") onClose();
+      backdrop?.remove();
+    }
+    backdrop?.addEventListener("click", (e) => {
+      if (e.target === backdrop) closeModal();
+    });
+    acceptBtn?.addEventListener("click", closeModal);
+  }
+</script>
