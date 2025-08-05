@@ -9,8 +9,8 @@ export const projects: Project[] = [
     longDescription: "<p>Infojobs como sponsor de La Velada IV, ofreció 2 puestos de trabajo junto a Midudev (Miguel Ángel Durán) para desarrollar la web del evento.</p><p>Tras un proceso de selección y unas entrevistas. puedo decir que fuí uno de los dos seleccionados entre 10.000 personas para el puesto. <a href=\"https://www.instagram.com/p/C4LU-3ooks0/\" target=\"_blank\">Aquí</a> se puede ver un breve resumen de la entrevista final.</p><p>La web de la Velada IV fue desarrollada con AstroJS, Typescript y TailwindCSS. La Velada IV es un evento organizado por Ibai Llanos y esta web presenta el evento y las distintas actividades que se realizaron en él.</p>",
     tags: ["Typescript", "AstroJS", "TailwindCSS"],
     image: "/images/veladaIV.webp",
-    imageAlt: "Imagen donde se ve la página de inicio de lavelada.es",
-    link: "https://lavelada.es",
+    imageAlt: "Imagen donde se ve la página de inicio de infolavelada.com",
+    link: "https://www.infolavelada.com/2024",
   },
   {
     id: 2,
