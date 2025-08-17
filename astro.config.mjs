@@ -16,5 +16,5 @@ export default defineConfig({
     schema:{
       API_URL:envField.string({context:"client", access:"public", description:"API URL for the backend service"}),
     }
-  }
+  },
 });

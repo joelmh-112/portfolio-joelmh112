@@ -15,16 +15,16 @@ export const onRequest = defineMiddleware(async (context, next) => {
     : null;
 
   // Si el subdominio es brain pero la ruta no empieza con /brain, redirige a /brain
-  if (subdomain === "brain") {
-    if (!pathname.startsWith("/brain")) {
-      return Response.redirect(new URL("/brain", context.request.url), 302);
-    }
-  } else {
-    // Si NO es subdominio brain y la ruta empieza con /brain, redirige sin aviso a la home ("/")
-    if (pathname.startsWith("/brain")) {
-      return Response.redirect(new URL("/", context.request.url), 302);
-    }
-  }
+  // if (subdomain === "brain") {
+  //   if (!pathname.startsWith("/brain")) {
+  //     return Response.redirect(new URL("/brain", context.request.url), 302);
+  //   }
+  // } else {
+  //   // Si NO es subdominio brain y la ruta empieza con /brain, redirige sin aviso a la home ("/")
+  //   if (pathname.startsWith("/brain")) {
+  //     return Response.redirect(new URL("/", context.request.url), 302);
+  //   }
+  // }
 
   return next();
 });

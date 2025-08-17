@@ -3,6 +3,7 @@ import { z } from "astro:schema";
 import type { Category } from "@/types/Category";
 import { getAuthTokenFromRequest } from "@/utils/auth";
 import { API_URL } from "astro:env/client";
+import { start } from "@astrojs/vercel/entrypoint";
 
 export const finance = {
   createCategory: defineAction({
@@ -10,6 +11,7 @@ export const finance = {
     input: z.object({
       name: z.string().min(1, "El nombre es obligatorio"),
       percentage: z.number().min(1, "El porcentaje debe ser al menos 1").max(100, "El porcentaje no puede ser mayor a 100"),
+      startDate: z.string().min(1, "La fecha de inicio es obligatoria"),
     }),
     handler: async (input, { request }) => {
       const token = getAuthTokenFromRequest(request);
@@ -36,11 +38,11 @@ export const finance = {
     },
   }),
   deleteCategory: defineAction({
-    accept: "form",
     input: z.object({
       id: z.string().uuid("ID inválido"),
     }),
     handler: async (input, { request }) => {
+      console.log('action delete')
       const token = getAuthTokenFromRequest(request);
       if (!token) {
         throw new Error("No estás autenticado");
